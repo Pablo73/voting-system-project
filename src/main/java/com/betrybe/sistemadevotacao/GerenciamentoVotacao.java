@@ -7,9 +7,9 @@ import java.util.ArrayList;
  */
 public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
 
-  private ArrayList<PessoaCandidata> pessoasCandidatas = new ArrayList<>();
-  private ArrayList<PessoaEleitora> pessoasEleitoras = new ArrayList<>();
-  private ArrayList<String> cpfsComputados = new ArrayList<>();
+  private ArrayList<PessoaCandidata> pessoasCandidatas;
+  private ArrayList<PessoaEleitora> pessoasEleitoras;
+  private ArrayList<String> cpfsComputados;
 
   /**
    * Constructs a GerenciamentoVotacao object with the specified lists of candidate persons,
@@ -21,9 +21,9 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
    */
   public GerenciamentoVotacao(ArrayList<PessoaCandidata> pessoasCandidatas,
       ArrayList<PessoaEleitora> pessoasEleitoras, ArrayList<String> cpfsComputados) {
-    this.pessoasCandidatas = pessoasCandidatas;
-    this.pessoasEleitoras = pessoasEleitoras;
-    this.cpfsComputados = cpfsComputados;
+    this.pessoasCandidatas = new ArrayList<>();
+    this.pessoasEleitoras = new ArrayList<>();
+    this.cpfsComputados = new ArrayList<>();
   }
 
   /**
@@ -34,7 +34,7 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
    */
   @Override
   public void cadastrarPessoaCandidata(String nome, int numero) {
-    for (PessoaCandidata candidata : pessoasCandidatas) {
+    for (PessoaCandidata candidata : this.pessoasCandidatas) {
       if (candidata.getNumero() == numero) {
         System.out.println("Número da pessoa candidata já utilizado!");
         return;
@@ -52,7 +52,7 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
    */
   @Override
   public void cadastrarPessoaEleitora(String nome, String cpf) {
-    for (PessoaEleitora eleitora : pessoasEleitoras) {
+    for (PessoaEleitora eleitora : this.pessoasEleitoras) {
       if (eleitora.getCpf().equals(cpf)) {
         System.out.println("Pessoa eleitora já cadastrada!");
         return;
@@ -70,7 +70,19 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
    */
   @Override
   public void votar(String cpfPessoaEleitora, int numeroPessoaCandidata) {
-    // TODO Auto-generated method stub
+    for (String cpf : this.cpfsComputados) {
+      if (cpf.equals(cpfPessoaEleitora)) {
+        System.out.println("Pessoa eleitora já votou!");
+        return;
+      }
+    }
+    for (PessoaCandidata candidata : this.pessoasCandidatas) {
+      if (candidata.getNumero() == numeroPessoaCandidata) {
+        candidata.receberVoto();
+        this.cpfsComputados.add(cpfPessoaEleitora);
+        return;
+      }
+    }
   }
 
   /**
@@ -78,7 +90,24 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
    */
   @Override
   public void mostrarResultado() {
-    // TODO Auto-generated method stub
+    int sumAllVotes = 0;
+
+    for (PessoaCandidata candidata : this.pessoasCandidatas) {
+      sumAllVotes += candidata.getVotos();
+
+    }
+    if (sumAllVotes == 0) {
+      System.out.println("É preciso ter pelo menos um voto para mostrar o resultado.");
+      return;
+    }
+
+    for (PessoaCandidata candidata : this.pessoasCandidatas) {
+      double numberOfVoteCandidate = ((double) candidata.getVotos() / sumAllVotes) * 100;
+
+      System.out.println("nome: " + candidata.getNome() + " - " + candidata.getVotos() + " votos"
+          + " ( " + Math.round(numberOfVoteCandidate) + "%" + " )");
+    }
+    System.out.println("Total de votos: " + sumAllVotes);
   }
 
   /**

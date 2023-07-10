@@ -60,7 +60,7 @@ public class PessoaCandidata extends Pessoa {
    * Increases the number of votes received by the candidate by 1.
    */
   public void receberVoto() {
-    votos += 1;
+    this.votos += 1;
   }
 
 }
