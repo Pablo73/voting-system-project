@@ -40,7 +40,7 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
         return;
       }
     }
-    PessoaCandidata pessoaCandidata = new PessoaCandidata(numero, nome);
+    PessoaCandidata pessoaCandidata = new PessoaCandidata(nome, numero);
     pessoasCandidatas.add(pessoaCandidata);
   }
 

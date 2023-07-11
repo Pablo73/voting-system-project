@@ -14,8 +14,8 @@ public class PessoaCandidata extends Pessoa {
    * @param numero The number of the candidate.
    * @param nome The name of the candidate.
    */
-  public PessoaCandidata(int numero, String nome) {
-    this.nome = nome;
+  public PessoaCandidata(String nome, int numero) {
+    super.nome = nome;
     this.numero = numero;
     this.votos = 0;
   }

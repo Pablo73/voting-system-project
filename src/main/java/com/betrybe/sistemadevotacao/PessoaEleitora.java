@@ -9,7 +9,7 @@ public class PessoaEleitora extends Pessoa {
 
   public PessoaEleitora(String nome, String cpf) {
     this.cpf = cpf;
-    this.nome = nome;
+    super.nome = nome;
   }
 
   /**
