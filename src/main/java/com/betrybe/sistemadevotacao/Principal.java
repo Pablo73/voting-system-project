@@ -25,7 +25,7 @@ public class Principal {
   public static void cadastroPessoasCandidata(GerenciamentoVotacao instancia) {
 
     try (Scanner scanMenu = new Scanner(System.in)) {
-      for (int i = 0; i <= 20; ++i) {
+      while (true) {
         System.out.println("Cadastrar pessoa candidata?");
         System.out.println("1 - Sim");
         System.out.println("2 - Não");
@@ -35,7 +35,7 @@ public class Principal {
 
         if (menuOptionCadidataInt == 2) {
           cadastroPessoasEleitoras(instancia);
-          return;
+          break;
         }
         if (menuOptionCadidataInt == 1) {
           System.out.println("Entre com o nome da pessoa candidata:");
@@ -61,7 +61,7 @@ public class Principal {
    */
   public static void cadastroPessoasEleitoras(GerenciamentoVotacao instancia) {
     try (Scanner scanMenu = new Scanner(System.in)) {
-      for (int i = 0; i <= 20; ++i) {
+      while (true) {
         System.out.println("Cadastrar pessoa eleitora?");
         System.out.println("1 - Sim");
         System.out.println("2 - Não");
@@ -71,7 +71,7 @@ public class Principal {
 
         if (menuOptionEleitoraInt == 2) {
           votacao(instancia);
-          return;
+          break;
         }
         if (menuOptionEleitoraInt == 1) {
           System.out.println("Entre com o nome da pessoa eleitora:");
@@ -96,7 +96,7 @@ public class Principal {
    */
   public static void votacao(GerenciamentoVotacao instancia) {
     try (Scanner scanMenu = new Scanner(System.in)) {
-      for (int i = 0; i <= 20; ++i) {
+      while (true) {
         System.out.println("Entre com o número correspondente à opção desejada:");
         System.out.println("1 - Votar");
         System.out.println("2 - Resultado Parcial");
@@ -120,7 +120,7 @@ public class Principal {
         }
 
         if (menuOptionVotacaoInt == 3) {
-          return;
+          break;
         }
       }
     } catch (NumberFormatException e) {
