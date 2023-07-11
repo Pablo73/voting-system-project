@@ -7,24 +7,9 @@ import java.util.ArrayList;
  */
 public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
 
-  private ArrayList<PessoaCandidata> pessoasCandidatas;
-  private ArrayList<PessoaEleitora> pessoasEleitoras;
-  private ArrayList<String> cpfsComputados;
-
-  /**
-   * Constructs a GerenciamentoVotacao object with the specified lists of candidate persons,
-   * eligible voters, and computed CPFs.
-   *
-   * @param pessoasCandidatas The list of candidate persons.
-   * @param pessoasEleitoras The list of eligible voters.
-   * @param cpfsComputados The list of computed CPFs.
-   */
-  public GerenciamentoVotacao(ArrayList<PessoaCandidata> pessoasCandidatas,
-      ArrayList<PessoaEleitora> pessoasEleitoras, ArrayList<String> cpfsComputados) {
-    this.pessoasCandidatas = new ArrayList<>();
-    this.pessoasEleitoras = new ArrayList<>();
-    this.cpfsComputados = new ArrayList<>();
-  }
+  private ArrayList<PessoaCandidata> pessoasCandidatas = new ArrayList<>();
+  private ArrayList<PessoaEleitora> pessoasEleitoras = new ArrayList<>();
+  private ArrayList<String> cpfsComputados = new ArrayList<>();
 
   /**
    * Registers a candidate person in the voting system.
@@ -104,7 +89,7 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
     for (PessoaCandidata candidata : this.pessoasCandidatas) {
       double numberOfVoteCandidate = ((double) candidata.getVotos() / sumAllVotes) * 100;
 
-      System.out.println("nome: " + candidata.getNome() + " - " + candidata.getVotos() + " votos"
+      System.out.println("Nome: " + candidata.getNome() + " - " + candidata.getVotos() + " votos"
           + " ( " + Math.round(numberOfVoteCandidate) + "%" + " )");
     }
     System.out.println("Total de votos: " + sumAllVotes);

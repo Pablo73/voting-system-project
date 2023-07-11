@@ -29,4 +29,16 @@ public class PessoaEleitora extends Pessoa {
   public void setCpf(String cpf) {
     this.cpf = cpf;
   }
+
+  @Override
+  public String getNome() {
+    return super.getNome();
+  }
+
+  @Override
+  public void setNome(String nome) {
+    super.setNome(nome);
+  }
+
+
 }

@@ -56,6 +56,17 @@ public class PessoaCandidata extends Pessoa {
     this.votos = votos;
   }
 
+
+  @Override
+  public String getNome() {
+    return super.getNome();
+  }
+
+  @Override
+  public void setNome(String nome) {
+    super.setNome(nome);
+  }
+
   /**
    * Increases the number of votes received by the candidate by 1.
    */

@@ -13,15 +13,16 @@ public class Principal {
    * @param args The command line arguments passed to the program.
    */
   public static void main(String[] args) {
-    GerenciamentoVotacao gerenciamentoVotacao = new GerenciamentoVotacao(null, null, null);
+    GerenciamentoVotacao gerenciamentoVotacao = new GerenciamentoVotacao();
     cadastroPessoasCandidata(gerenciamentoVotacao);
   }
 
   /**
    * Handles the registration of candidate persons.
-   *
+   * 
    * @param instancia The instance of GerenciamentoVotacao.
    */
+
   public static void cadastroPessoasCandidata(GerenciamentoVotacao instancia) {
 
     try (Scanner scanMenu = new Scanner(System.in)) {
