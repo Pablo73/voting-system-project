@@ -19,10 +19,9 @@ public class Principal {
 
   /**
    * Handles the registration of candidate persons.
-   * 
+   *
    * @param instancia The instance of GerenciamentoVotacao.
    */
-
   public static void cadastroPessoasCandidata(GerenciamentoVotacao instancia) {
 
     try (Scanner scanMenu = new Scanner(System.in)) {
@@ -31,21 +30,18 @@ public class Principal {
         System.out.println("1 - Sim");
         System.out.println("2 - Não");
         System.out.println("Entre com o número correspondente à opção desejada:");
-        String menuOptionCadidataString = scanMenu.next();
-        int menuOptionCadidataInt = Integer.parseInt(menuOptionCadidataString);
+        int menuOptionCadidataInt = Integer.parseInt(scanMenu.nextLine());
 
         if (menuOptionCadidataInt == 2) {
-          cadastroPessoasEleitoras(instancia);
+          cadastroPessoasEleitoras(instancia, scanMenu);
           break;
         }
         if (menuOptionCadidataInt == 1) {
           System.out.println("Entre com o nome da pessoa candidata:");
-          scanMenu.nextLine();
           String nameCandidata = scanMenu.nextLine();
 
           System.out.println("Entre com o número da pessoa candidata:");
-          String numeroCandidataString = scanMenu.nextLine();
-          int numeroCandidataInt = Integer.parseInt(numeroCandidataString);
+          int numeroCandidataInt = Integer.parseInt(scanMenu.nextLine());
 
           instancia.cadastrarPessoaCandidata(nameCandidata, numeroCandidataInt);
         }
@@ -60,23 +56,21 @@ public class Principal {
    *
    * @param instancia The instance of GerenciamentoVotacao.
    */
-  public static void cadastroPessoasEleitoras(GerenciamentoVotacao instancia) {
-    try (Scanner scanMenu = new Scanner(System.in)) {
+  public static void cadastroPessoasEleitoras(GerenciamentoVotacao instancia, Scanner scanMenu) {
+    try {
       while (true) {
         System.out.println("Cadastrar pessoa eleitora?");
         System.out.println("1 - Sim");
         System.out.println("2 - Não");
         System.out.println("Entre com o número correspondente à opção desejada:");
-        String menuOptionEleitoraString = scanMenu.next();
-        int menuOptionEleitoraInt = Integer.parseInt(menuOptionEleitoraString);
+        int menuOptionEleitoraInt = Integer.parseInt(scanMenu.nextLine());
 
         if (menuOptionEleitoraInt == 2) {
-          votacao(instancia);
+          votacao(instancia, scanMenu);
           break;
         }
         if (menuOptionEleitoraInt == 1) {
           System.out.println("Entre com o nome da pessoa eleitora:");
-          scanMenu.nextLine();
           String nameEleitora = scanMenu.nextLine();
 
           System.out.println("Entre com o cpf da pessoa eleitora:");
@@ -95,24 +89,21 @@ public class Principal {
    *
    * @param instancia The instance of GerenciamentoVotacao.
    */
-  public static void votacao(GerenciamentoVotacao instancia) {
-    try (Scanner scanMenu = new Scanner(System.in)) {
+  public static void votacao(GerenciamentoVotacao instancia, Scanner scanMenu) {
+    try {
       while (true) {
         System.out.println("Entre com o número correspondente à opção desejada:");
         System.out.println("1 - Votar");
         System.out.println("2 - Resultado Parcial");
         System.out.println("3 - Finalizar Votação");
-        String menuOptionVotacaoString = scanMenu.next();
-        int menuOptionVotacaoInt = Integer.parseInt(menuOptionVotacaoString);
+        int menuOptionVotacaoInt = Integer.parseInt(scanMenu.nextLine());
 
         if (menuOptionVotacaoInt == 1) {
           System.out.println("Entre com o cpf da pessoa eleitora:");
-          scanMenu.nextLine();
           String cpfEleitora = scanMenu.nextLine();
 
           System.out.println("Entre com o número da pessoa candidata:");
-          String numeroEleitoraString = scanMenu.nextLine();
-          int numeroEleitoraInt = Integer.parseInt(numeroEleitoraString);
+          int numeroEleitoraInt = Integer.parseInt(scanMenu.nextLine());
 
           instancia.votar(cpfEleitora, numeroEleitoraInt);
         }
@@ -121,6 +112,7 @@ public class Principal {
         }
 
         if (menuOptionVotacaoInt == 3) {
+          instancia.mostrarResultado();
           break;
         }
       }
